@@ -20,7 +20,7 @@ const ScreenPreFixHeader = (props) => {
 
   return (
     <React.Fragment>
-      <SafeAreaView style={[ lStyles.container, { backgroundColor: theme.colors.background } ]}>
+      <SafeAreaView style={[ lStyles.container, props.pStyles, { backgroundColor: theme.colors.background } ]}>
         <StatusBar barStyle={theme.dark ? 'light-content' : 'dark-content'} />
 
         <Stack.Screen
@@ -47,12 +47,7 @@ const lStyles = StyleSheet.create({
   container: {
     paddingHorizontal: 15,
     flex: 1,
-  },
-
-  inputTextField: {
-    marginBottom: 15,
   }
-
 });
 
 export default ScreenPreFixHeader;
