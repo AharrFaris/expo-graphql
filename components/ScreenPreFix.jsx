@@ -1,5 +1,5 @@
 import React from 'react';
-import { StatusBar, StyleSheet } from 'react-native';
+import { StatusBar, StyleSheet, ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useTheme } from 'react-native-paper';
 import { Stack } from 'expo-router';
@@ -19,7 +19,7 @@ const ScreenPreFix = (props) => {
   // __DOM__
 
   return (
-    <React.Fragment>
+    <ScrollView>
       <SafeAreaView style={[ lStyles.container, props.pStyles, { backgroundColor: theme.colors.background } ]}>
         <StatusBar barStyle={theme.dark ? 'light-content' : 'dark-content'} />
 
@@ -31,7 +31,7 @@ const ScreenPreFix = (props) => {
         {props.children}
       </SafeAreaView>
 
-    </React.Fragment>
+    </ScrollView>
   )
 }
 

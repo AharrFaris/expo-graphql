@@ -19,27 +19,24 @@ const ScreenPreFixHeader = (props) => {
   // __DOM__
 
   return (
-    <React.Fragment>
-      <SafeAreaView style={[ lStyles.container, props.pStyles, { backgroundColor: theme.colors.background } ]}>
-        <StatusBar barStyle={theme.dark ? 'light-content' : 'dark-content'} />
+    <SafeAreaView style={[ lStyles.container, props.pStyles, { backgroundColor: theme.colors.background } ]}>
+      <StatusBar barStyle={theme.dark ? 'light-content' : 'dark-content'} />
 
-        <Stack.Screen
-          options={{
-            headerShadowVisible: false,
-            headerTitle: props.headerTilte,
-            headerTintColor: theme.colors.secondary,
-            headerStyle: {
-              backgroundColor: theme.colors.background,
-            },
+      <Stack.Screen
+        options={{
+          headerShadowVisible: false,
+          headerTitle: props.headerTilte,
+          headerTintColor: theme.colors.secondary,
+          headerStyle: {
+            backgroundColor: theme.colors.background,
+          },
 
-            headerLeft: props.headerLeft || null,
-            headerRight: props.headerRight || null,
-          }}
-        />
-        {props.children}
-      </SafeAreaView>
-
-    </React.Fragment>
+          headerLeft: props.headerLeft || null,
+          headerRight: props.headerRight || null,
+        }}
+      />
+      {props.children}
+    </SafeAreaView>
   )
 }
 

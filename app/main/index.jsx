@@ -1,10 +1,9 @@
 import React from 'react';
-import { View, StyleSheet, Text, ActivityIndicator } from 'react-native';
-import { Button, Icon, IconButton, TextInput, useTheme } from 'react-native-paper';
+import { View, StyleSheet, Text, ActivityIndicator, ScrollView } from 'react-native';
+import { Button, IconButton, TextInput, useTheme } from 'react-native-paper';
 import { gql, useMutation } from '@apollo/client';
-import { Stack, router } from 'expo-router';
+import { router } from 'expo-router';
 import { StoreCtx } from '../../utils/StoreCtx';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import ScreenPreFixHeader from '../../components/ScreenPreFixHeader';
 
 // @ts-ignore
@@ -111,51 +110,53 @@ const Home = (props) => {
           />
         )}
       >
+        <ScrollView>
 
-        <View style={lStyles.inputWrap}>
-          <TextInput
-            label="Book"
-            value={formData.name}
-            onChangeText={text => {
-              $formErr({ ...formErr, name: '' });
-              $formData({ ...formData, name: text });
-            }}
-          />
-          {
-            formErr.name ?
-              <Text style={{ color: theme.colors.error }}>{formErr.name}</Text> : null
-          }
-        </View>
-
-        <View style={lStyles.inputWrap}>
-          <TextInput
-            label="Author"
-            value={formData.author}
-            onChangeText={text => {
-              $formErr({ ...formErr, author: '' });
-              $formData({ ...formData, author: text });
-            }}
-          />
-          {
-            formErr.author ?
-              <Text style={{ color: theme.colors.error }}>{formErr.author}</Text> : null
-          }
-        </View>
-
-        <View style={lStyles.inputWrap}>
-          <Button
-            icon={loading ? "" : "send"}
-            mode="contained"
-            onPress={onSubmit}
-            disabled={loading}
-          >
+          <View style={lStyles.inputWrap}>
+            <TextInput
+              label="Book"
+              value={formData.name}
+              onChangeText={text => {
+                $formErr({ ...formErr, name: '' });
+                $formData({ ...formData, name: text });
+              }}
+            />
             {
-              loading ?
-                <ActivityIndicator /> :
-                'Submit'
+              formErr.name ?
+                <Text style={{ color: theme.colors.error }}>{formErr.name}</Text> : null
             }
-          </Button>
-        </View>
+          </View>
+
+          <View style={lStyles.inputWrap}>
+            <TextInput
+              label="Author"
+              value={formData.author}
+              onChangeText={text => {
+                $formErr({ ...formErr, author: '' });
+                $formData({ ...formData, author: text });
+              }}
+            />
+            {
+              formErr.author ?
+                <Text style={{ color: theme.colors.error }}>{formErr.author}</Text> : null
+            }
+          </View>
+
+          <View style={lStyles.inputWrap}>
+            <Button
+              icon={loading ? "" : "send"}
+              mode="contained"
+              onPress={onSubmit}
+              disabled={loading}
+            >
+              {
+                loading ?
+                  <ActivityIndicator /> :
+                  'Submit'
+              }
+            </Button>
+          </View>
+        </ScrollView>
       </ScreenPreFixHeader >
     </React.Fragment >
   )
