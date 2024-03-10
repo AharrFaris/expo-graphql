@@ -1,5 +1,10 @@
 import React from 'react';
-import { View, StyleSheet, Text, ActivityIndicator, ScrollView } from 'react-native';
+import {
+  View, StyleSheet,
+  Text,
+  ActivityIndicator,
+  Image
+} from 'react-native';
 import { Button, IconButton, TextInput, useTheme } from 'react-native-paper';
 import { gql, useMutation } from '@apollo/client';
 import { router } from 'expo-router';
@@ -110,53 +115,56 @@ const Home = (props) => {
           />
         )}
       >
-        <ScrollView>
 
-          <View style={lStyles.inputWrap}>
-            <TextInput
-              label="Book"
-              value={formData.name}
-              onChangeText={text => {
-                $formErr({ ...formErr, name: '' });
-                $formData({ ...formData, name: text });
-              }}
-            />
+        <View style={lStyles.logoWrap}>
+          <Image source={require('../../assets/logo.png')} style={{ width: 100, height: 100 }} />
+          <Text style={{ color: theme.colors.text, marginTop: 10, fontSize: 16 }}>Welcome, you have been missed!</Text>
+        </View>
+
+        <View style={lStyles.inputWrap}>
+          <TextInput
+            label="Book"
+            value={formData.name}
+            onChangeText={text => {
+              $formErr({ ...formErr, name: '' });
+              $formData({ ...formData, name: text });
+            }}
+          />
+          {
+            formErr.name ?
+              <Text style={{ color: theme.colors.error }}>{formErr.name}</Text> : null
+          }
+        </View>
+
+        <View style={lStyles.inputWrap}>
+          <TextInput
+            label="Author"
+            value={formData.author}
+            onChangeText={text => {
+              $formErr({ ...formErr, author: '' });
+              $formData({ ...formData, author: text });
+            }}
+          />
+          {
+            formErr.author ?
+              <Text style={{ color: theme.colors.error }}>{formErr.author}</Text> : null
+          }
+        </View>
+
+        <View style={lStyles.inputWrap}>
+          <Button
+            icon={loading ? "" : "send"}
+            mode="contained"
+            onPress={onSubmit}
+            disabled={loading}
+          >
             {
-              formErr.name ?
-                <Text style={{ color: theme.colors.error }}>{formErr.name}</Text> : null
+              loading ?
+                <ActivityIndicator /> :
+                'Submit'
             }
-          </View>
-
-          <View style={lStyles.inputWrap}>
-            <TextInput
-              label="Author"
-              value={formData.author}
-              onChangeText={text => {
-                $formErr({ ...formErr, author: '' });
-                $formData({ ...formData, author: text });
-              }}
-            />
-            {
-              formErr.author ?
-                <Text style={{ color: theme.colors.error }}>{formErr.author}</Text> : null
-            }
-          </View>
-
-          <View style={lStyles.inputWrap}>
-            <Button
-              icon={loading ? "" : "send"}
-              mode="contained"
-              onPress={onSubmit}
-              disabled={loading}
-            >
-              {
-                loading ?
-                  <ActivityIndicator /> :
-                  'Submit'
-              }
-            </Button>
-          </View>
-        </ScrollView>
+          </Button>
+        </View>
       </ScreenPreFixHeader >
     </React.Fragment >
   )
@@ -164,6 +172,13 @@ const Home = (props) => {
 
 const lStyles = StyleSheet.create({
 
+  logoWrap: {
+    height: 150,
+    justifyContent: 'center',
+    alignContent: 'center',
+    alignItems: 'center',
+    marginBottom: 20
+  },
 
   inputWrap: {
     marginVertical: 10,

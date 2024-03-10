@@ -1,8 +1,10 @@
 import React from 'react';
-import { StatusBar, StyleSheet, ScrollView } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useTheme } from 'react-native-paper';
 import { Stack } from 'expo-router';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import { StatusBar } from 'expo-status-bar';
 
 // @ts-ignore
 // import styles from './ScreenPreFix.style';
@@ -19,9 +21,9 @@ const ScreenPreFix = (props) => {
   // __DOM__
 
   return (
-    <ScrollView>
+    <KeyboardAwareScrollView>
       <SafeAreaView style={[ lStyles.container, props.pStyles, { backgroundColor: theme.colors.background } ]}>
-        <StatusBar barStyle={theme.dark ? 'light-content' : 'dark-content'} />
+        <StatusBar style={theme.dark ? "light" : "dark"} />
 
         <Stack.Screen
           options={{
@@ -30,8 +32,7 @@ const ScreenPreFix = (props) => {
         />
         {props.children}
       </SafeAreaView>
-
-    </ScrollView>
+    </KeyboardAwareScrollView>
   )
 }
 
@@ -40,10 +41,6 @@ const lStyles = StyleSheet.create({
     paddingHorizontal: 15,
     flex: 1,
   },
-
-  inputTextField: {
-    marginBottom: 15,
-  }
 
 });
 

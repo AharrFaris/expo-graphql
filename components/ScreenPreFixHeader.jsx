@@ -1,8 +1,10 @@
 import React from 'react';
-import { StatusBar, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useTheme } from 'react-native-paper';
 import { Stack } from 'expo-router';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import { StatusBar } from 'expo-status-bar';
 
 // @ts-ignore
 // import styles from './ScreenPreFix.style';
@@ -19,24 +21,26 @@ const ScreenPreFixHeader = (props) => {
   // __DOM__
 
   return (
-    <SafeAreaView style={[ lStyles.container, props.pStyles, { backgroundColor: theme.colors.background } ]}>
-      <StatusBar barStyle={theme.dark ? 'light-content' : 'dark-content'} />
+    <KeyboardAwareScrollView>
+      <SafeAreaView style={[ lStyles.container, props.pStyles, { backgroundColor: theme.colors.background } ]}>
+        <StatusBar style={theme.dark ? "light" : "dark"} />
 
-      <Stack.Screen
-        options={{
-          headerShadowVisible: false,
-          headerTitle: props.headerTilte,
-          headerTintColor: theme.colors.secondary,
-          headerStyle: {
-            backgroundColor: theme.colors.background,
-          },
+        <Stack.Screen
+          options={{
+            headerShadowVisible: false,
+            headerTitle: props.headerTilte,
+            headerTintColor: theme.colors.secondary,
+            headerStyle: {
+              backgroundColor: theme.colors.background,
+            },
 
-          headerLeft: props.headerLeft || null,
-          headerRight: props.headerRight || null,
-        }}
-      />
-      {props.children}
-    </SafeAreaView>
+            headerLeft: props.headerLeft || null,
+            headerRight: props.headerRight || null,
+          }}
+        />
+        {props.children}
+      </SafeAreaView>
+    </KeyboardAwareScrollView>
   )
 }
 
