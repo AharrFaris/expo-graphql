@@ -21,8 +21,8 @@ const ScreenPreFix = (props) => {
   // __DOM__
 
   return (
-    <KeyboardAwareScrollView>
-      <SafeAreaView style={[ lStyles.container, props.pStyles, { backgroundColor: theme.colors.background } ]}>
+    <KeyboardAwareScrollView style={[ lStyles.container, props.pStyles, { backgroundColor: theme.colors.background } ]}>
+      <SafeAreaView >
         <StatusBar style={theme.dark ? "light" : "dark"} />
 
         <Stack.Screen

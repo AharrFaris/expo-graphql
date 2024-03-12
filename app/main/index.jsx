@@ -3,7 +3,8 @@ import {
   View, StyleSheet,
   Text,
   ActivityIndicator,
-  Image
+  Image,
+  TouchableOpacity
 } from 'react-native';
 import { Button, IconButton, TextInput, useTheme } from 'react-native-paper';
 import { gql, useMutation } from '@apollo/client';
@@ -105,7 +106,7 @@ const Home = (props) => {
     <React.Fragment>
 
       <ScreenPreFixHeader
-        headerTilte="Home"
+        headerTitle="Home"
         headerRight={() => (
           <IconButton
             icon={isDark ? "white-balance-sunny" : "weather-night"}
@@ -118,7 +119,7 @@ const Home = (props) => {
 
         <View style={lStyles.logoWrap}>
           <Image source={require('../../assets/logo.png')} style={{ width: 100, height: 100 }} />
-          <Text style={{ color: theme.colors.text, marginTop: 10, fontSize: 16 }}>Welcome, you have been missed!</Text>
+          <Text style={{ color: theme.colors.text, marginTop: 10, fontSize: 18 }}>Welcome, you have been missed!</Text>
         </View>
 
         <View style={lStyles.inputWrap}>
@@ -165,6 +166,19 @@ const Home = (props) => {
             }
           </Button>
         </View>
+
+        <TouchableOpacity style={lStyles.FormFooterTextWrap} onPress={() => router.push('/main/dashboard')}>
+          <Text style={[ lStyles.FormFooterText, { color: theme.colors.primary } ]}>
+            Do not have an account?
+          </Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={lStyles.FormFooterTextWrap} onPress={() => router.push('/main/admin')}>
+          <Text style={[ lStyles.FormFooterText, { color: theme.colors.primary } ]} >
+            Password Reset?
+          </Text>
+        </TouchableOpacity>
+
       </ScreenPreFixHeader >
     </React.Fragment >
   )
@@ -182,6 +196,12 @@ const lStyles = StyleSheet.create({
 
   inputWrap: {
     marginVertical: 10,
+  },
+  FormFooterTextWrap: {
+    marginBottom: 5
+  },
+  FormFooterText: {
+    fontSize: 16
   }
 
 });

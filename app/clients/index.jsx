@@ -41,7 +41,7 @@ const ClientIndex = (props) => {
       <ScreenPreFix>
 
         <Button
-          icon="send"
+          icon="chevron-left"
           mode="contained"
           onPress={() => router.back()}
         >

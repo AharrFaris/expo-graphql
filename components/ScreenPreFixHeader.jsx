@@ -21,15 +21,16 @@ const ScreenPreFixHeader = (props) => {
   // __DOM__
 
   return (
-    <KeyboardAwareScrollView>
-      <SafeAreaView style={[ lStyles.container, props.pStyles, { backgroundColor: theme.colors.background } ]}>
+    <KeyboardAwareScrollView style={[ lStyles.container, props.pStyles, { backgroundColor: theme.colors.background } ]}>
+      <SafeAreaView>
         <StatusBar style={theme.dark ? "light" : "dark"} />
 
         <Stack.Screen
           options={{
             headerShadowVisible: false,
-            headerTitle: props.headerTilte,
-            headerTintColor: theme.colors.secondary,
+            headerTitle: props.headerTitle,
+            // @ts-ignore
+            headerTintColor: theme.colors.text,
             headerStyle: {
               backgroundColor: theme.colors.background,
             },

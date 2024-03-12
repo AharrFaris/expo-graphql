@@ -3,6 +3,7 @@ import React from 'react';
 import { StatusBar } from 'react-native';
 import { Button, useTheme, } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import ScreenPreFix from '../../../components/ScreenPreFix';
 
 // @ts-ignore
 // import styles from './AdminIndex.style';
@@ -20,18 +21,9 @@ const AdminIndex = (props) => {
 
   return (
     <React.Fragment>
-      <SafeAreaView style={{ backgroundColor: theme.colors.background, flex: 1 }}>
-        <StatusBar barStyle={theme.dark ? 'light-content' : 'dark-content'} />
-
-        <Stack.Screen
-          options={{
-            headerShown: false,
-            headerTitle: "Admin"
-          }}
-        />
-
+      <ScreenPreFix>
         <Button
-          icon="send"
+          icon="chevron-left"
           mode="contained"
           onPress={() => router.back()}
         >
@@ -39,13 +31,13 @@ const AdminIndex = (props) => {
         </Button>
 
         <Button
-          icon="send"
+          icon="chevron-right"
           mode="contained"
           onPress={() => router.push('/clients')}
         >
           Clients
         </Button>
-      </SafeAreaView>
+      </ScreenPreFix>
     </React.Fragment>
   )
 }
